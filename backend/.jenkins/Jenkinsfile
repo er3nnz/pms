@@ -1,0 +1,48 @@
+pipeline {
+    agent any
+
+    environment {
+        DOCKER_HUB_CREDENTIALS = credentials('docker-hub-credentials-id')
+        DOCKER_HUB_REPO = 'erenaksu1/pys'
+        IMAGE_TAG = "${env.BUILD_NUMBER}"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build & Package') {
+            steps {
+                echo 'Building with Maven...'
+                sh './mvnw clean package -DskipTests'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                echo 'Building Docker image...'
+                sh "docker build -t ${DOCKER_HUB_REPO}:${IMAGE_TAG} ."
+            }
+        }
+
+        stage('Push Docker Image') {
+            steps {
+                echo 'Logging in Docker Hub...'
+                sh "echo ${DOCKER_HUB_CREDENTIALS_PSW} | docker login -u ${DOCKER_HUB_CREDENTIALS_USR} --password-stdin"
+                sh "docker push ${DOCKER_HUB_REPO}:${IMAGE_TAG}"
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "Build and push successful: ${DOCKER_HUB_REPO}:${IMAGE_TAG}"
+        }
+        failure {
+            echo "Build failed!"
+        }
+    }
+}

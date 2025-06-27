@@ -1,0 +1,14 @@
+body{
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+:root {
+  --primary-color: #3674B5;
+  --primary-hover: #2d5f99;
+  --background: linear-gradient(135deg, #f5f7ff 0%, #fcfdff 100%);
+  --card-shadow: 0 4px 25px rgba(0, 0, 0, 0.10);
+  --card-radius: 1.25rem;
+  --input-radius: 0.75rem;
+  --transition: 0.3s cubic-bezier(.4,2,.6,1);
+}

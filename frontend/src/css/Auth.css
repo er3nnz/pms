@@ -1,0 +1,114 @@
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--background);
+  padding: 1rem;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  padding: 2.5rem 2rem 2rem 2rem;
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  transition: box-shadow var(--transition), transform var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-card::before {
+  content: "";
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, #3674B5 60%, #e0e7ff 100%);
+  opacity: 0.08;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.auth-card:hover {
+  box-shadow: 0 8px 36px rgba(54, 116, 181, 0.13);
+}
+
+.auth-card h2 {
+  font-weight: 800;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.5px;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 0.3rem;
+}
+
+.form-control {
+  border-radius: var(--input-radius);
+  padding: 0.85rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ced4da;
+  background: #f8fafc;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.18rem rgba(54, 116, 181, 0.13);
+  background: #fff;
+}
+
+.button {
+  background: linear-gradient(90deg, #3674B5 60%, #5fa8e6 100%);
+  border: none;
+  color: #fff;
+  padding: 0.4rem;
+  font-weight: 600;
+  border-radius: var(--input-radius);
+  transition: background var(--transition), transform var(--transition);
+  font-size: 1.08rem;
+  box-shadow: 0 2px 8px rgba(54, 116, 181, 0.08);
+  margin-top: 0.5rem;
+}
+
+.button:hover, .button:focus {
+  background: linear-gradient(90deg, #2d5f99 60%, #3674B5 100%);
+  transform: translateY(-1px) scale(1.02);
+}
+
+.alert {
+  font-size: 1rem;
+  padding: 0.7rem 1.1rem;
+  border-radius: var(--input-radius);
+  margin-bottom: 1rem;
+  background: #ffeaea;
+  color: #b52d36;
+  border: 1px solid #ffd6d6;
+}
+
+@media (max-width: 600px) {
+  .auth-card {
+    padding: 1.5rem 0.7rem 1.2rem 0.7rem;
+    max-width: 98vw;
+    border-radius: 0.7rem;
+  }
+  .auth-card h2 {
+    font-size: 1.3rem;
+  }
+  .form-control {
+    font-size: 0.98rem;
+    padding: 0.7rem 0.7rem;
+  }
+  .button {
+    font-size: 1rem;
+    padding: 0.7rem;
+  }
+}
